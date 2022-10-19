@@ -14,22 +14,20 @@ import { User } from './entity/user.entity';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-  host: 'localhost',
-  port: 5434,
-  username: 'localhost',
-  password: 'root',
-  database: 'CARTOLA-FC',
-  entities: [
-    
-   User,
+    host: 'localhost',
+    port: 5434,
+    username: 'localhost',
+    password: 'root',
+    database: 'CARTOLA-FC',
+    entities: [
+    User,
   ],
   migrations: ['dist/migrations/*.{ts,js}'],
   migrationsTableName: 'typeorm_migrations',
- 
-      }),
-      
+      }),    
     }),
-    AuthModule
+    AuthModule,
+    
   ],
   controllers: [AppController],
   providers: [AppService],
