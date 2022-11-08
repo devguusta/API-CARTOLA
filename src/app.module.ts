@@ -5,6 +5,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { User } from './entity/user.entity';
+import { GamesModule } from './modules/games/games.module';
+import { Round } from './entity/round.entity';
 
 @Module({
   imports: [
@@ -20,13 +22,15 @@ import { User } from './entity/user.entity';
     password: 'root',
     database: 'CARTOLA-FC',
     entities: [
-    User,
+   
+    Round
   ],
   migrations: ['dist/migrations/*.{ts,js}'],
   migrationsTableName: 'typeorm_migrations',
       }),    
     }),
     AuthModule,
+    GamesModule
     
   ],
   controllers: [AppController],
