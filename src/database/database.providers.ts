@@ -1,6 +1,7 @@
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { User } from '../entity/user.entity';
+import { Round } from '../entity/round.entity';
 
 
 
@@ -12,9 +13,9 @@ export default new DataSource({
   username: 'localhost',
   password: 'root',
   database: 'CARTOLA-FC',
-  entities: [User
+  entities: [User, Round
   ],
-  migrations: ['migrations'],
+  migrations: ["./migration/*.ts"],
   migrationsTableName: 'typeorm_migrations',
   // synchronize: true,
 });
