@@ -2,7 +2,7 @@ import { ClosedRound } from "./closedRound.entity";
 
 export class Games{
   
-    rodata_atual: number;
+    rodada_atual: number;
     status_mercado: number;
     esquema_default_id: number;
     max_ligas_free: number;
