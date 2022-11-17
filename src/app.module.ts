@@ -23,7 +23,7 @@ import { Round } from './entity/round.entity';
     database: 'CARTOLA-FC',
     entities: [
    
-    Round
+    Round, User
   ],
   migrations: ['dist/migrations/*.{ts,js}'],
   migrationsTableName: 'typeorm_migrations',

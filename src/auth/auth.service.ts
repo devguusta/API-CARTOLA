@@ -77,7 +77,7 @@ export class AuthService {
       const saltOrRounds = 10;
       const hash = await bcrypt.hash(dto.password, saltOrRounds);
       const user = await this.userRepository.save({
-         email: dto.email, name: dto.name, password: hash, admin: 0,
+         email: dto.email, name: dto.name, password: hash, admin: false,
       });
       delete user.password;
   
