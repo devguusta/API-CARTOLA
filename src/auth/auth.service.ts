@@ -1,4 +1,4 @@
-import { Injectable, Inject, BadRequestException, ForbiddenException } from '@nestjs/common';
+import { Injectable, Inject, BadRequestException, ForbiddenException, HttpStatus } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { DataSource, Repository } from 'typeorm';
 import { User } from '../entity/user.entity';
@@ -7,6 +7,7 @@ import * as bcrypt from 'bcrypt';
 import { LoginDto } from './dtos/login.dto';
 import { JwtService } from '@nestjs/jwt'
 import { ConfigService } from "@nestjs/config";
+import { RecoveryPasswordDto } from './dtos/recovery.password.dto';
 @Injectable()
 export class AuthService {
   constructor(
@@ -88,6 +89,45 @@ export class AuthService {
     throw error;
       
     }
+  }
+
+  async recoveryPassword(params:RecoveryPasswordDto) {
+    try {
+      const userExist = await this.userRepository.findOne(
+        {
+          where: {
+            email: params.email,
+          }
+        }
+      );
+      if(!userExist){
+        return new BadRequestException({
+          message: "User dont exists",
+          statusCode: 404,
+      });
+    
+      }
+      const isMatch = await bcrypt.compare(params.oldPassword, userExist.password);
+      if(!isMatch){
+        return new ForbiddenException(
+          {
+            message: "The passwords dont match",
+          statusCode: 400,
+          }
+        );
+      }
+      const saltOrRounds = 10;
+      const hash = await bcrypt.hash(params.newPassword, saltOrRounds);
+      userExist.password = hash;
+      await this.userRepository.save(userExist);
+      return HttpStatus.CREATED;
+
+
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+    
   }
 
 

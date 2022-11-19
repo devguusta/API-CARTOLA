@@ -25,6 +25,7 @@ signup(@Body() dto: AuthDto ){
 
 @Post('recovery')
 recoveryPassword(@Body() dto: RecoveryPasswordDto) {
+    return this.authService.recoveryPassword(dto);
 
 }
 
