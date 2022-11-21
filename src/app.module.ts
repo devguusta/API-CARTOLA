@@ -7,6 +7,7 @@ import { AuthModule } from './auth/auth.module';
 import { User } from './entity/user.entity';
 import { GamesModule } from './modules/games/games.module';
 import { Round } from './entity/round.entity';
+import { AdminModule } from './modules/admin/admin.module';
 
 @Module({
   imports: [
@@ -30,7 +31,8 @@ import { Round } from './entity/round.entity';
       }),    
     }),
     AuthModule,
-    GamesModule
+    GamesModule,
+    AdminModule
     
   ],
   controllers: [AppController],
