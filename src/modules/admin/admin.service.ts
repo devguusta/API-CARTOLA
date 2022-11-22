@@ -36,6 +36,7 @@ export class AdminService{
             if(!user ){
                 return new BadRequestException('user not found');
             }
+            return user;
         } catch (error) {
             console.log(error);
             throw error;
