@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { PassportStrategy } from '@nestjs/passport';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -11,7 +11,7 @@ import { Repository } from 'typeorm';
 
 
 @Injectable()
-export class JwtStrategy extends PassportStrategy(
+export class AdminStrategy extends PassportStrategy(
   Strategy,
   'jwt',
 ) {
@@ -38,7 +38,10 @@ export class JwtStrategy extends PassportStrategy(
           id: payload.sub,
         }
       });
-      console.log(user);
+      if(!user.admin){
+        return new UnauthorizedException('admin required');
+      }
+    
     delete user.password;
     return user;
   }
