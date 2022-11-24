@@ -1,4 +1,4 @@
-import { BadRequestException } from "@nestjs/common";
+import { BadRequestException, UnauthorizedException } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
 import { User } from "src/entity/user.entity";
@@ -11,8 +11,11 @@ export class AdminService{
         private config: ConfigService,
     ){}
 
-    async findAllUsers(){
+    async findAllUsers(admin: boolean){
         try {
+            if(!admin){
+                throw new UnauthorizedException("Required admin account");
+            }
             const users =  await  this.userRepository.find();
             if(!users){
                 return new BadRequestException();
@@ -25,8 +28,11 @@ export class AdminService{
       
       }
 
-    async findOneUser(id: number){
+    async findOneUser(id: number, admin: boolean){
         try {
+            if(!admin){
+                throw new UnauthorizedException("Required admin account");
+            }
             const user = await this.userRepository.findOne({
                 where: {
                     id: id,
