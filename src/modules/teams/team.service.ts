@@ -5,6 +5,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Shield } from "src/entity/shield.entity";
 import { Team } from "src/entity/team.entity";
 import { Repository } from "typeorm";
+import { TeamDto } from "./dto/team.dto";
 
 @Injectable()
 export class TeamsService{
@@ -18,8 +19,20 @@ export class TeamsService{
         ){}
 
         async findAllTeams(): Promise<Team[]> {
-            const {data} = await this.httpService.get<Team[]>(this.config.get("CARTOLA_API") + "/clubes").toPromise();
-            console.log(data);
+            //TODO: ALTERAR AQUI PARA
+            const {data} = await this.httpService.get<TeamDto[]>(this.config.get("CARTOLA_API") + "/clubes").toPromise();
+            
+            var teams = await this.teamRepository.find()
+           // console.log(data);
+            console.log(data)
+            if(teams.length === 0) {
+
+
+
+             
+
+               
+            }
             return [];
         }
 }
