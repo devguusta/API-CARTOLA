@@ -8,6 +8,9 @@ import { User } from './entity/user.entity';
 import { GamesModule } from './modules/games/games.module';
 import { Round } from './entity/round.entity';
 import { AdminModule } from './modules/admin/admin.module';
+import { Team } from './entity/team.entity';
+import { TeamsModule } from './modules/teams/teams.module';
+import { Shield } from './entity/shield.entity';
 
 @Module({
   imports: [
@@ -24,7 +27,7 @@ import { AdminModule } from './modules/admin/admin.module';
     database: configService.get("DATABASE"),
     entities: [
    
-    Round, User
+    Round, User, Team,Shield
   ],
   migrations: ['dist/migrations/*.{ts,js}'],
   migrationsTableName: 'typeorm_migrations',
@@ -32,7 +35,8 @@ import { AdminModule } from './modules/admin/admin.module';
     }),
     AuthModule,
     GamesModule,
-    AdminModule
+    AdminModule,
+    TeamsModule,
     
   ],
   controllers: [AppController],

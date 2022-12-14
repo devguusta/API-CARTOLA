@@ -1,5 +1,6 @@
 import { HttpService } from "@nestjs/axios";
 import { Inject, Injectable } from "@nestjs/common";
+import { ConfigService } from "@nestjs/config";
 import { InjectRepository } from "@nestjs/typeorm";
 import { isNumber } from "class-validator";
 import { stringify } from "querystring";
@@ -15,11 +16,12 @@ import { Games } from "./dtos";
 @Injectable()
 export class GamesService {
     constructor(private readonly httpService: HttpService,  
+        private config: ConfigService,
         @InjectRepository(Round)
         private roundRepository: Repository<Round>) {}
 
     async findAll(): Promise<Games> {
-  var {data} = await this.httpService.get<Games>("https://api.cartola.globo.com/mercado/status").toPromise();
+  var {data} = await this.httpService.get<Games>( this.config.get("CARTOLA_API") + "/mercado/status").toPromise();
       console.log(data.fechamento);
       var game =  await this.roundRepository.findOne({
         where: {
