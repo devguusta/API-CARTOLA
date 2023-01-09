@@ -20,13 +20,22 @@ export class TeamsService{
 
         async findAllTeams(): Promise<Team[]> {
             //TODO: ALTERAR AQUI PARA
-            const {data} = await this.httpService.get<TeamDto[]>(this.config.get("CARTOLA_API") + "/clubes").toPromise();
-            
+            const {data} = await this.httpService.get<Map<number, TeamDto>>(this.config.get("CARTOLA_API") + "/clubes").toPromise();
+           data["237"]
+           var result = Array.from(data.values());
+        
             var teams = await this.teamRepository.find()
            // console.log(data);
             console.log(data)
+            // cenário dois
             if(teams.length === 0) {
-
+              const  teamsPromise =  result.map(team => {
+                   return this.teamRepository.save(team);
+                }
+                 );
+                 const teams = Promise.all(teamsPromise);
+                //  CENÁRIO 2
+                 this.teamRepository.save(result);
 
 
              
