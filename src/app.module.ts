@@ -11,6 +11,8 @@ import { AdminModule } from './modules/admin/admin.module';
 import { Team } from './entity/team.entity';
 import { TeamsModule } from './modules/teams/teams.module';
 import { Shield } from './entity/shield.entity';
+import { NbaTeam } from './entity/nba_team.entity';
+import { NbaModule } from './modules/nba/nba.module';
 
 @Module({
   imports: [
@@ -27,7 +29,7 @@ import { Shield } from './entity/shield.entity';
     database: configService.get("DATABASE"),
     entities: [
    
-    Round, User, Team,Shield
+    Round, User, Team,Shield, NbaTeam
   ],
   migrations: ['dist/migrations/*.{ts,js}'],
   migrationsTableName: 'typeorm_migrations',
@@ -37,6 +39,7 @@ import { Shield } from './entity/shield.entity';
     GamesModule,
     AdminModule,
     TeamsModule,
+    NbaModule
     
   ],
   controllers: [AppController],
