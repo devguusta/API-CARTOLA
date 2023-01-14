@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm"
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm"
+import { NbaPlayer } from "./nba_player.entity";
 
 @Entity()
 export class NbaTeam{
@@ -28,5 +29,8 @@ export class NbaTeam{
 
     @Column()
     allStar: boolean;
+
+    @OneToMany(() => NbaPlayer, (player) => player.team)
+    players: NbaPlayer[];
 
 }
