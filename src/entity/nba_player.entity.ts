@@ -1,14 +1,18 @@
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { NbaTeam } from "./nba_team.entity";
 @Entity()
 export class NbaPlayer {
     @PrimaryGeneratedColumn()
     id: number;
 
     @Column()
-    idPlayer: string;
+    idPlayer: number;
 
     @Column()
     birth: Date;
+
+    @Column()
+    name: string;
 
     @Column()
     country: string;
@@ -17,7 +21,7 @@ export class NbaPlayer {
     height: string;
 
     @Column()
-    width: string;
+    weight: string;
 
     @Column()
     college: string;
@@ -26,7 +30,7 @@ export class NbaPlayer {
     affiliation: string;
 
     @Column()
-    jersey: string;
+    jersey: number;
 
     @Column()
     active: boolean;
@@ -36,4 +40,8 @@ export class NbaPlayer {
 
     @Column()
     start: number;
+
+    @ManyToOne(() => NbaTeam)
+    @JoinColumn({name: "teamId"})
+    team: NbaTeam;
 }
