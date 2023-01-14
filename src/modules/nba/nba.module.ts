@@ -3,12 +3,14 @@ import { Module } from "@nestjs/common";
 import { ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { config } from "dotenv";
-import { NbaTeam } from "src/entity/nba_team.entity";
+import { NbaTeam } from "../../entity/nba_team.entity";
+import { NbaPlayerModule } from "./features/player/nba_player.module";
 import { NbaController } from "./nba.controller";
 import { NbaService } from "./nba.service";
 
 @Module({
     imports: [
+      NbaPlayerModule,
         TypeOrmModule.forFeature([NbaTeam]),
         HttpModule.registerAsync({
             useFactory: async (configService: ConfigService) => ({
@@ -26,6 +28,7 @@ import { NbaService } from "./nba.service";
     controllers: [
         NbaController
     ],
-    providers:[NbaService]
+    providers:[NbaService],
+    exports: [NbaService]
 })
 export class NbaModule{}
