@@ -5,6 +5,7 @@ import { Round } from '../entity/round.entity';
 import { Team } from '../entity/team.entity';
 import { Shield } from '../entity/shield.entity';
 import { NbaTeam } from '../entity/nba_team.entity';
+import { NbaPlayer } from '../entity/nba_player.entity';
 dotenv.config();
 const config = process.env
 
@@ -20,7 +21,7 @@ export default new DataSource(
     password:process.env.PASSWORD,
     database:process.env.DATABASE,
   entities: [User, Round, Team,
-    Shield, NbaTeam
+    Shield, NbaTeam, NbaPlayer,
   ],
   migrations: ["./migration/*.ts"],
   migrationsTableName: 'typeorm_migrations',

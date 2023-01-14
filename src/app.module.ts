@@ -13,6 +13,7 @@ import { TeamsModule } from './modules/teams/teams.module';
 import { Shield } from './entity/shield.entity';
 import { NbaTeam } from './entity/nba_team.entity';
 import { NbaModule } from './modules/nba/nba.module';
+import { NbaPlayer } from './entity/nba_player.entity';
 
 @Module({
   imports: [
@@ -29,7 +30,8 @@ import { NbaModule } from './modules/nba/nba.module';
     database: configService.get("DATABASE"),
     entities: [
    
-    Round, User, Team,Shield, NbaTeam
+    Round, User, Team,Shield, NbaTeam,
+    NbaPlayer,
   ],
   migrations: ['dist/migrations/*.{ts,js}'],
   migrationsTableName: 'typeorm_migrations',
