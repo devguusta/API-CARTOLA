@@ -7,38 +7,38 @@ export class NbaPlayer {
 
     @Column()
     idPlayer: number;
-
-    @Column()
+    
+    @Column({nullable: true})
     birth: Date;
 
     @Column()
     name: string;
 
-    @Column()
+    @Column({nullable: true})
     country: string;
 
-    @Column()
+    @Column({nullable: true})
     height: string;
 
-    @Column()
+    @Column({nullable: true})
     weight: string;
 
-    @Column()
+    @Column({nullable: true})
     college: string;
 
-    @Column()
+    @Column({nullable: true})
     affiliation: string;
 
-    @Column()
+    @Column({nullable: true})
     jersey: number;
 
-    @Column()
+    @Column({nullable: true})
     active: boolean;
 
-    @Column()
+    @Column({nullable: true})
     position: string;
 
-    @Column()
+    @Column({nullable: true})
     start: number;
 
     @ManyToOne(() => NbaTeam)

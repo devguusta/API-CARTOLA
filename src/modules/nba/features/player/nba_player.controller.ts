@@ -9,10 +9,16 @@ export class NbaPlayerController{
     constructor(private playerServive: NbaPlayerService){}
 
 
-    @Get('all/')
-    getAll(@Query('team') team: number, @Query('season') season: number){
+    @Get('all/team')
+    getByTeam(@Query('team') team: number, @Query('season') season: number){
         console.log(team);
-        return this.playerServive.findAll(new NbaPlayerParams(team, season));
+        return this.playerServive.findByTeam(new NbaPlayerParams(team, season));
+    }
+
+    @Get('all')
+    getAll(){
+       
+        return this.playerServive.findAllPlayers();
     }
 
 
