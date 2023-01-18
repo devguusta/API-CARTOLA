@@ -6,7 +6,7 @@ import {
   ExtractJwt,
   Strategy,
 } from 'passport-jwt';
-import { User } from 'src/entity/user.entity';
+import { User } from '../../entity/user.entity';
 import { Repository } from 'typeorm';
 
 
