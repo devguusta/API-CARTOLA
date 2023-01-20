@@ -17,7 +17,7 @@ export default new DataSource(
     type: 'postgres',
     host:process.env.HOST,
     port:Number(process.env.PORT),
-    username:process.env.HOST,
+    username:process.env.USERNAME,
     password:process.env.PASSWORD,
     database:process.env.DATABASE,
   entities: [User, Round, Team,

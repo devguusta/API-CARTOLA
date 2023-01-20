@@ -1,4 +1,5 @@
 import { Module } from '@nestjs/common';
+import * as dotenv from 'dotenv';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
@@ -14,7 +15,16 @@ import { Shield } from './entity/shield.entity';
 import { NbaTeam } from './entity/nba_team.entity';
 import { NbaModule } from './modules/nba/nba.module';
 import { NbaPlayer } from './entity/nba_player.entity';
+dotenv.config();
+const config = process.env
 
+var result = [   process.env.HOST,
+  Number(process.env.PORT),
+process.env.USERNAME,
+  process.env.PASSWORD,
+  process.env.DATABASE,]
+
+  console.log(result);
 @Module({
   imports: [
     ConfigModule.forRoot({ isGlobal: true }),
@@ -23,11 +33,11 @@ import { NbaPlayer } from './entity/nba_player.entity';
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
         type: 'postgres',
-    host: configService.get("HOST"),
-    port: configService.get("PORT"),
-    username: configService.get("HOST"),
-    password: configService.get("PASSWORD"),
-    database: configService.get("DATABASE"),
+        host:process.env.HOST,
+        port:Number(process.env.PORT),
+        username:process.env.USERNAME,
+        password:process.env.PASSWORD,
+        database:process.env.DATABASE,
     entities: [
    
     Round, User, Team,Shield, NbaTeam,
