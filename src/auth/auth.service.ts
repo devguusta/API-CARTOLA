@@ -21,9 +21,7 @@ export class AuthService {
     return this.userRepository.find();
   }
 
-  async signin(dto: LoginDto): Promise<{
-    access_token: string;
-}> {
+  async signin(dto: LoginDto) {
     try {
       const user = await this.userRepository.findOne({
         where: {
@@ -31,13 +29,13 @@ export class AuthService {
         }
       });
       if(!user){
-        throw new ForbiddenException(
+        return new ForbiddenException(
           'Credentials invalid'
         );
       }
       const isMatch = await bcrypt.compare(dto.password, user.password);
       if(!isMatch){
-        throw new ForbiddenException(
+        return new ForbiddenException(
           'Credentials invalid'
         );
       }
