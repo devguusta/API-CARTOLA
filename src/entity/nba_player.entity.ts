@@ -1,4 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { NbaAllStarVoting } from "./nba_allstar_voting.entity";
 import { NbaTeam } from "./nba_team.entity";
 @Entity()
 export class NbaPlayer {
@@ -44,4 +45,7 @@ export class NbaPlayer {
     @ManyToOne(() => NbaTeam)
     @JoinColumn({name: "teamId"})
     team: NbaTeam;
+
+    @JoinColumn({name: "playerId"})
+    allStar: NbaAllStarVoting;
 }

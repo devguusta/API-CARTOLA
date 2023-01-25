@@ -15,6 +15,7 @@ import { Shield } from './entity/shield.entity';
 import { NbaTeam } from './entity/nba_team.entity';
 import { NbaModule } from './modules/nba/nba.module';
 import { NbaPlayer } from './entity/nba_player.entity';
+import { NbaAllStarVoting } from './entity/nba_allstar_voting.entity';
 dotenv.config();
 const config = process.env
 
@@ -41,7 +42,7 @@ process.env.USERNAME,
     entities: [
    
     Round, User, Team,Shield, NbaTeam,
-    NbaPlayer,
+    NbaPlayer,NbaAllStarVoting,
   ],
   migrations: ['dist/migrations/*.{ts,js}'],
   migrationsTableName: 'typeorm_migrations',

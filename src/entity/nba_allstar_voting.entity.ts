@@ -6,6 +6,9 @@ import { User } from "./user.entity";
 export class NbaAllStarVoting{
     @PrimaryGeneratedColumn()
     id: number;
+    
+    @PrimaryGeneratedColumn()
+    idPlayer: number;
 
     @Column()
     votes: number;
