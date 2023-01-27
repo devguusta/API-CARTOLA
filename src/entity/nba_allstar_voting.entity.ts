@@ -7,18 +7,14 @@ export class NbaAllStarVoting{
     @PrimaryGeneratedColumn()
     id: number;
     
-    @PrimaryGeneratedColumn()
+    @Column()
     idPlayer: number;
 
+
     @Column()
-    votes: number;
-
-    @OneToMany(() => NbaPlayer, (player) => player.idPlayer)
-    player: NbaPlayer[];
-
-    @OneToOne(()=> User)
-    @JoinColumn()
-    user: User;
+    position: string
+    @Column()
+    user: number;
 
 
 }
