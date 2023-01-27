@@ -4,12 +4,14 @@ import { ConfigService } from "@nestjs/config";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { config } from "dotenv";
 import { NbaTeam } from "../../entity/nba_team.entity";
+import { NbaAllStarModule } from "./features/allstar/nba_allstar.module";
 import { NbaPlayerModule } from "./features/player/nba_player.module";
 import { NbaController } from "./nba.controller";
 import { NbaService } from "./nba.service";
 
 @Module({
     imports: [
+      NbaAllStarModule,
       NbaPlayerModule,
         TypeOrmModule.forFeature([NbaTeam]),
         HttpModule.registerAsync({

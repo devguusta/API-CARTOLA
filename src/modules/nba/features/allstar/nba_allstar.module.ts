@@ -5,8 +5,8 @@ import { TypeOrmModule } from "@nestjs/typeorm";
 import { NbaAllStarVoting } from "src/entity/nba_allstar_voting.entity";
 import { NbaPlayer } from "src/entity/nba_player.entity";
 import { NbaTeam } from "src/entity/nba_team.entity";
-import { NbaAllStarCOntroller } from "./allstart.controller";
-import { NbaAllStarService } from "./allstart.service";
+import { NbaAllStarController } from "./allstar.controller";
+import { NbaAllStarService } from "./allstar.service";
 
 @Module({
     imports: [
@@ -24,7 +24,7 @@ import { NbaAllStarService } from "./allstart.service";
             inject: [ConfigService]
         })
     ],
-     controllers: [NbaAllStarCOntroller],
+     controllers: [NbaAllStarController],
      providers: [NbaAllStarService],
 })
 export class NbaAllStarModule{
